@@ -2,7 +2,6 @@
 
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from "@nextui-org/react";
 import { BiSolidUserCircle } from 'react-icons/bi';
-import { CgMenuRightAlt } from 'react-icons/cg';
 
 export default function NavBar() {
   return (
@@ -17,39 +16,18 @@ export default function NavBar() {
           <DropdownTrigger>
             <Button
               variant="light"
-            >
-              <CgMenuRightAlt size={35} className='text-gray-500' />
-            </Button>
-          </DropdownTrigger>
-          <DropdownMenu aria-label="Static Actions">
-            <DropdownItem key="new">New file</DropdownItem>
-            <DropdownItem key="copy">Copy link</DropdownItem>
-            <DropdownItem key="edit">Edit file</DropdownItem>
-            <DropdownItem key="delete" className="text-danger" color="danger">
-              Delete file
-            </DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-
-        <Dropdown>
-          <DropdownTrigger>
-            <Button
-              variant="light"
               color="primary"
             >
               <BiSolidUserCircle size={35} />
             </Button>
           </DropdownTrigger>
           <DropdownMenu aria-label="Static Actions">
-            <DropdownItem key="new">New file</DropdownItem>
-            <DropdownItem key="copy">Copy link</DropdownItem>
-            <DropdownItem key="edit">Edit file</DropdownItem>
+            {/* <DropdownItem key="new">New file</DropdownItem> */}
             <DropdownItem key="delete" className="text-danger" color="danger">
-              Delete file
+              Close session
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
-
       </nav>
     </header>
   )
