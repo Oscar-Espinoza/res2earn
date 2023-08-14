@@ -1,9 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { NextUIProvider } from "@nextui-org/system";
 
-import { Providers } from "./providers"
-import './globals.css'
+import Providers from "./_providers/providers"
+import './styles/globals.css'
 import NavBar from './components/nav-bar'
 import Footer from './components/footer'
 
@@ -22,8 +21,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NavBar />
         <Providers>
+          <NavBar />
           {children}
         </Providers>
         <Footer />

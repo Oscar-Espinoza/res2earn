@@ -1,6 +1,10 @@
 {
   "cSpell.words": [
+    "lokijs",
     "nextui",
-    "tailwindcss"
+    "pino",
+    "tailwindcss",
+    "viem",
+    "Wagmi"
   ]
 }
