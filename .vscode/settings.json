@@ -4,6 +4,7 @@
     "nextui",
     "pino",
     "tailwindcss",
+    "tanstack",
     "viem",
     "Wagmi"
   ]

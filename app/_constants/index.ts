@@ -7,7 +7,8 @@ export const quizTokenAddress: `0x${string}` =
 
 export const surveys: Survey[] = [
   {
-    title: "Holiday Destinations",
+    id: 1,
+    title: "holiday destinations",
     image: HolidayImg,
     questions: [
       {
@@ -35,7 +36,8 @@ export const surveys: Survey[] = [
     ],
   },
   {
-    title: "Sports Preferences",
+    id: 2,
+    title: "sports preferences",
     image: HolidayImg,
     questions: [
       {
@@ -67,7 +69,8 @@ export const surveys: Survey[] = [
     ],
   },
   {
-    title: "Music Genres",
+    id: 3,
+    title: "music genres",
     image: SportImg,
     questions: [
       {
@@ -95,7 +98,8 @@ export const surveys: Survey[] = [
     ],
   },
   {
-    title: "Movie Genres",
+    id: 4,
+    title: "movie genres",
     image: SportImg,
     questions: [
       {
@@ -127,7 +131,8 @@ export const surveys: Survey[] = [
     ],
   },
   {
-    title: "Food Preference",
+    id: 5,
+    title: "food preference",
     image: SportImg,
     questions: [
       {

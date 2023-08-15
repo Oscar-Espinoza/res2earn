@@ -10,6 +10,7 @@ export type Question = {
 };
 
 export type Survey = {
+  id: number;
   title: string;
   image: string;
   questions: Question[];
