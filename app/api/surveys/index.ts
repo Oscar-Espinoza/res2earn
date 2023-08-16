@@ -1,15 +1,19 @@
 import { surveys } from "@/app/_constants";
-import { Survey } from "@/app/types/survey";
+import { SurveyType } from "@/app/types/survey";
 
 export const getSurveys = () => {
-  return new Promise<Survey[]>((resolve) => {
+  return new Promise<SurveyType[]>((resolve) => {
     resolve(surveys);
   });
 };
 
 export const getSurvey = (id: number) => {
-  return new Promise<Survey>((resolve) => {
+  return new Promise<SurveyType>((resolve, reject) => {
     const survey = surveys.find((survey) => survey.id === id);
-    survey && resolve(survey);
+    if (survey) {
+      resolve(survey);
+    } else {
+      reject("Survey not found");
+    }
   });
 };

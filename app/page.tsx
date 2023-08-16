@@ -9,9 +9,8 @@ import { useState } from 'react';
 export default function Home() {
   const [loading, setLoading] = useState(true)
   const { isConnected, address } = useAccount({
-    onConnect({ address, connector, isReconnected }) {
+    onConnect() {
       setLoading(false)
-      console.log('Connected', { address, connector, isReconnected })
     }
   })
   return (

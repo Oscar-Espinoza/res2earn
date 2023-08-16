@@ -1,12 +1,12 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 import SurveyCardSkeleton from './SurveyCard/SurveyCardSkeleton'
 import SurveyCard from './SurveyCard'
 import { useQuery } from '@tanstack/react-query'
-import { Survey } from '../types/survey'
+import { SurveyType } from '../types/survey'
 import { getSurveys } from '../api/surveys'
 
 function Surveys() {
-  const { data: surveys, isLoading } = useQuery<Survey[]>({
+  const { data: surveys, isLoading } = useQuery<SurveyType[]>({
     queryKey: ['surveys'],
     queryFn: getSurveys
   })

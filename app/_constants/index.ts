@@ -1,19 +1,18 @@
-import { Survey } from "../types/survey";
-import HolidayImg from "@/app/assets/survey1.svg";
-import SportImg from "@/app/assets/survey2.png";
+import { SurveyType } from "../types/survey";
+import { surveyImg, travelImg, summerImg } from "../assets";
 
 export const quizTokenAddress: `0x${string}` =
   "0x437ef217203452317c3c955cf282b1ee5f6aaf72";
 
-export const surveys: Survey[] = [
+export const surveys: SurveyType[] = [
   {
     id: 1,
     title: "holiday destinations",
-    image: HolidayImg,
+    image: travelImg,
     questions: [
       {
         text: "Which destination would you love for a summer vacation?",
-        image: "PLACEHOLDER_FOR_SUMMER_DESTINATION",
+        image: summerImg,
         lifetimeSeconds: 10,
         options: [{ text: "Maldives" }, { text: "Bali" }, { text: "Ibiza" }],
       },
@@ -38,7 +37,7 @@ export const surveys: Survey[] = [
   {
     id: 2,
     title: "sports preferences",
-    image: HolidayImg,
+    image: surveyImg,
     questions: [
       {
         text: "Which sport do you enjoy watching the most?",
@@ -71,7 +70,7 @@ export const surveys: Survey[] = [
   {
     id: 3,
     title: "music genres",
-    image: SportImg,
+    image: surveyImg,
     questions: [
       {
         text: "Which music genre do you listen to the most?",
@@ -100,7 +99,7 @@ export const surveys: Survey[] = [
   {
     id: 4,
     title: "movie genres",
-    image: SportImg,
+    image: surveyImg,
     questions: [
       {
         text: "What type of movies do you enjoy watching?",
@@ -133,7 +132,7 @@ export const surveys: Survey[] = [
   {
     id: 5,
     title: "food preference",
-    image: SportImg,
+    image: surveyImg,
     questions: [
       {
         text: "Which fruit do you prefer?",

@@ -1,17 +1,22 @@
-export type Option = {
+export type OptionType = {
   text: string;
 };
 
-export type Question = {
+export type QuestionType = {
   text: string;
   image: string;
   lifetimeSeconds: number;
-  options: Option[];
+  options: OptionType[];
 };
 
-export type Survey = {
+export type AnswerType = {
+  question: string;
+  answer: string;
+};
+
+export type SurveyType = {
   id: number;
   title: string;
   image: string;
-  questions: Question[];
+  questions: QuestionType[];
 };
