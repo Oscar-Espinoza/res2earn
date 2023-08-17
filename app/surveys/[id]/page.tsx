@@ -8,6 +8,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { SurveyType, AnswerType } from '@/app/types/survey'
 import Question from '@/app/components/Question'
 import { Button } from '@nextui-org/button'
+import Overview from '@/app/components/Overview'
 
 type SurveyLayoutProps = {
   params: {
@@ -33,8 +34,8 @@ function Survey({ params }: SurveyLayoutProps) {
   );
 
   useEffect(() => {
-    console.log(answers)
-  }, [answers])
+    console.log(survey?.questions.length === (currentQuestion + 1))
+  }, [currentQuestion, survey?.questions.length])
 
   if (isLoading) {
     return <div>Loading...</div>
@@ -45,10 +46,7 @@ function Survey({ params }: SurveyLayoutProps) {
   }
 
   const handleNextQuestion = () => {
-    if (currentQuestion + 1 === survey.questions.length) {
-    } else {
-      setCurrentQuestion(prev => prev + 1)
-    }
+    setCurrentQuestion(prev => prev + 1)
   }
 
   const handleAnswer = (question: string, answer: string) => {
@@ -66,13 +64,14 @@ function Survey({ params }: SurveyLayoutProps) {
           height={200}
         />
       </div>
-
       <div className='px-3 flex flex-col gap-2'>
         <strong>{currentQuestion + 1}/{survey.questions.length}</strong>
-        <Question question={survey.questions[currentQuestion]} handleAnswer={handleAnswer} />
-        <Button variant='bordered' color='primary' className='w-24 self-end' onClick={handleNextQuestion}>
-          Next
-        </Button>
+        {currentQuestion === survey.questions.length
+          ?
+          <Overview answers={answers} />
+          :
+          <Question question={survey.questions[currentQuestion]} handleAnswer={handleAnswer} nextQuestion={handleNextQuestion} />
+        }
       </div>
     </div>
   )

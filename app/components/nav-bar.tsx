@@ -2,10 +2,9 @@
 
 import { Web3Button } from "@web3modal/react";
 import Link from "next/link";
-import { useNetwork } from "wagmi";
+import { Suspense } from "react";
 
 export default function NavBar() {
-  const net = useNetwork()
   return (
     <header className="px-8 py-3 border-b bg-white flex justify-between items-center">
       <Link href='/'>
