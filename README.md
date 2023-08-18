@@ -21,9 +21,9 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [res2earn] <a name="about-project"></a>
+# 📖 [Res2earn] <a name="about-project"></a>
 
-**[res2earn](https://res2earn.vercel.app/)** Survey app where you can complete surveys and earn crypto for it!
+**[Res2earn](https://res2earn.vercel.app/)** Survey app where you can complete surveys and earn crypto for it!
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -78,7 +78,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [res2earn](https://res2earn.vercel.app/)
+- Visit the [Res2earn](https://res2earn.vercel.app/) website!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
