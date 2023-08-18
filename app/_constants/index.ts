@@ -6,6 +6,8 @@ export const contractAddress = "0x9008bE46938a105a922ABDeb49061d5CE71c5629";
 export const quizTokenAddress: `0x${string}` =
   "0x9008be46938a105a922abdeb49061d5ce71c5629";
 
+export const mainNetwork = { name: "goerli", id: 5 };
+
 export const surveys: SurveyType[] = [
   {
     id: 6,

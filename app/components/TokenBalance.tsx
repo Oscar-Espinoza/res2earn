@@ -19,9 +19,7 @@ function TokenBalance({ address, tokenAddress }: TokenBalanceProps) {
   if (isError) return <div>Error fetching balance</div>
 
   return (
-    <div className='px-4'>
-      <Code color="primary" className='font-semibold flex flex-wrap items-center text-base'>Current ${balance?.symbol} balance: <MdGeneratingTokens className='ms-1' /> {isLoading ? 'Loading...' : isError ? 'Error getting balance' : <span className='font-bold'>{balance?.formatted}</span>}</Code>
-    </div>
+    <Code color="primary" className='font-semibold flex flex-wrap items-center text-base'>Current ${balance?.symbol} balance: <MdGeneratingTokens className='ms-1' /> {isLoading ? 'Loading...' : isError ? 'Error getting balance' : <span className='font-bold'>{balance?.formatted}</span>}</Code>
   )
 }
 

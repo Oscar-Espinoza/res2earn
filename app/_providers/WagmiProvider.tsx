@@ -7,13 +7,13 @@ import {
 } from "@web3modal/ethereum";
 import { Web3Modal } from "@web3modal/react";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
-import { goerli, sepolia } from "wagmi/chains";
+import { goerli } from "wagmi/chains";
 
 type WagmiProviderType = {
   children: ReactNode;
 };
 
-const chains = [goerli, sepolia];
+const chains = [goerli];
 const projectId = process.env.NEXT_PUBLIC_W3C_PID as string;
 
 const { publicClient } = configureChains(chains, [w3mProvider({ projectId })]);
