@@ -1,18 +1,20 @@
-import { Survey } from "../types/survey";
-import HolidayImg from "@/app/assets/survey1.svg";
-import SportImg from "@/app/assets/survey2.png";
+import { SurveyType } from "../types/survey";
+import { surveyImg, travelImg, summerImg } from "../assets";
+
+export const contractAddress = "0x9008bE46938a105a922ABDeb49061d5CE71c5629";
 
 export const quizTokenAddress: `0x${string}` =
-  "0x437ef217203452317c3c955cf282b1ee5f6aaf72";
+  "0x9008be46938a105a922abdeb49061d5ce71c5629";
 
-export const surveys: Survey[] = [
+export const surveys: SurveyType[] = [
   {
-    title: "Holiday Destinations",
-    image: HolidayImg,
+    id: 6,
+    title: "holiday destinations",
+    image: travelImg,
     questions: [
       {
         text: "Which destination would you love for a summer vacation?",
-        image: "PLACEHOLDER_FOR_SUMMER_DESTINATION",
+        image: summerImg,
         lifetimeSeconds: 10,
         options: [{ text: "Maldives" }, { text: "Bali" }, { text: "Ibiza" }],
       },
@@ -35,8 +37,9 @@ export const surveys: Survey[] = [
     ],
   },
   {
-    title: "Sports Preferences",
-    image: HolidayImg,
+    id: 7,
+    title: "sports preferences",
+    image: surveyImg,
     questions: [
       {
         text: "Which sport do you enjoy watching the most?",
@@ -67,8 +70,9 @@ export const surveys: Survey[] = [
     ],
   },
   {
-    title: "Music Genres",
-    image: SportImg,
+    id: 3,
+    title: "music genres",
+    image: surveyImg,
     questions: [
       {
         text: "Which music genre do you listen to the most?",
@@ -95,8 +99,9 @@ export const surveys: Survey[] = [
     ],
   },
   {
-    title: "Movie Genres",
-    image: SportImg,
+    id: 4,
+    title: "movie genres",
+    image: surveyImg,
     questions: [
       {
         text: "What type of movies do you enjoy watching?",
@@ -127,8 +132,9 @@ export const surveys: Survey[] = [
     ],
   },
   {
-    title: "Food Preference",
-    image: SportImg,
+    id: 5,
+    title: "food preference",
+    image: surveyImg,
     questions: [
       {
         text: "Which fruit do you prefer?",

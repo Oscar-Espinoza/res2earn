@@ -1,4 +1,3 @@
-'use client'
 import React from 'react'
 import { Card, Skeleton } from "@nextui-org/react"
 
@@ -8,7 +7,7 @@ type SurveyCardSkeletonProps = {
 
 function SurveyCardSkeleton({ position }: SurveyCardSkeletonProps) {
   return (
-    <Card className={`space-y-5 p-4 ${position % 5 === 0 ? 'col-span-2' : ''}`} radius="md">
+    <Card className={`space-y-5 p-4 ${(position + 1) % 5 === 0 ? 'col-span-2' : ''}`} radius="md">
       <Skeleton className="rounded-lg">
         <div className="h-24 rounded-lg bg-default-300"></div>
       </Skeleton>
