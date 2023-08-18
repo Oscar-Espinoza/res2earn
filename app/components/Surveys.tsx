@@ -20,7 +20,7 @@ function Surveys() {
   }
 
   return (
-    <div className='grid grid-cols-2 gap-5 px-4'>
+    <div className='grid grid-cols-2 gap-5 px-2 xs:px-4'>
       {surveys?.map((survey, i) =>
         <SurveyCard key={i} survey={survey} position={i} />
       )}

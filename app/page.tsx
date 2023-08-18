@@ -23,11 +23,11 @@ export default function Home() {
       <div className='flex flex-col gap-5 py-3 max-w-lg'>
         {!isConnected || loading
           ?
-          <div className='px-4 w-full'>
-            <Code color="primary" className='font-semibold text-base w-full text-center'>Connect and start collecting $QUIZ tokens!</Code>
+          <div className='px-2 xs:px-4 w-full'>
+            <Code color="primary" className='font-semibold w-full text-center text-sm xs:text-base'>Connect and start collecting $QUIZ tokens!</Code>
           </div>
           :
-          <div className='px-4 flex flex-col gap-3'>
+          <div className='px-2 xs:px-4 flex flex-col gap-3'>
             <TokenBalance address={address} tokenAddress={quizTokenAddress} />
             {(isConnected && network.chain?.network !== mainNetwork.name && <Code color='danger' className='w-full flex items-center gap-5 py-1'>You are not in goerli network! <Button color='danger' onClick={() => switchNetwork?.(mainNetwork.id)}>Switch to goerli</Button></Code>)}
           </div>

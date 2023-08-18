@@ -7,7 +7,7 @@ import { MdOutlineGeneratingTokens } from 'react-icons/md'
 export default function NavBar() {
 
   return (
-    <header className="px-8 py-3 border-b bg-white flex justify-center">
+    <header className="px-2 xs:px-8 py-3 border-b bg-white flex justify-center">
       <div className="flex justify-between max-w-lg grow">
         <Link href='/' className="flex items-center gap-1 text-xl">
           <MdOutlineGeneratingTokens size={30} />
