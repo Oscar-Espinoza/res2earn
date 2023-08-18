@@ -11,7 +11,7 @@
   - [Setup](#setup)
   - [Install](#install)
   - [Usage](#usage)
-  - [Deployment](#deply)
+  - [Deployment](#deploy)
 - [👥 Authors](#authors)
 - [🤝 Contributing](#contributing)
 - [⭐️ Show your support](#support)
@@ -112,9 +112,18 @@ And now you can start running your dev server with:
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### Deployment <a name="about-project"></a>
+### Deployment <a name="deploy"></a>
 
 - The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## 🥇 Acknowledgements <a name="Acknowledgements"></a>
+
+- [scucchiero](https://github.com/scucchiero) thank you for your utils repo it really helped me a lot!
+- Special thanks to [Artur Chmaro](https://www.youtube.com/watch?v=bZKVfXmzRDw&lc=UgzVCC6-f4A8YCSNl4h4AaABAg.9tUiNXYuYdY9tVyKViwWQ8&ab_channel=ArturChmaro) for making such a considerate guide for solidity beginners.
+- Design inspired in [ImSaifun's website](https://preview.themeforest.net/item/coingain-earn-free-csgo-skins-cryptocurrencies-gift-cards-react-app/full_screen_preview/35058870?_ga=2.132727182.1245053638.1691775214-1965749587.1688312730)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
