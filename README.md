@@ -23,7 +23,7 @@
 
 # 📖 [res2earn] <a name="about-project"></a>
 
-**[res2earn]** Survey app where you can complete surveys and earn crypto for it!
+**[res2earn](https://res2earn.vercel.app/)** Survey app where you can complete surveys and earn crypto for it!
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -121,9 +121,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## 🥇 Acknowledgements <a name="Acknowledgements"></a>
 
-- [scucchiero](https://github.com/scucchiero) thank you for your utils repo it really helped me a lot!
+- [scucchiero](https://github.com/scucchiero) Thank you for your utils repo it really helped me a lot!
 - Special thanks to [Artur Chmaro](https://www.youtube.com/watch?v=bZKVfXmzRDw&lc=UgzVCC6-f4A8YCSNl4h4AaABAg.9tUiNXYuYdY9tVyKViwWQ8&ab_channel=ArturChmaro) for making such a considerate guide for solidity beginners.
-- Design inspired in [ImSaifun's website](https://preview.themeforest.net/item/coingain-earn-free-csgo-skins-cryptocurrencies-gift-cards-react-app/full_screen_preview/35058870?_ga=2.132727182.1245053638.1691775214-1965749587.1688312730)
+- Design inspired in [ImSaifun's coingain](https://preview.themeforest.net/item/coingain-earn-free-csgo-skins-cryptocurrencies-gift-cards-react-app/full_screen_preview/35058870?_ga=2.132727182.1245053638.1691775214-1965749587.1688312730)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
