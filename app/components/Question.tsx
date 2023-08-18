@@ -12,21 +12,21 @@ type QuestionProps = {
 function Question({ question, handleAnswer, nextQuestion, index }: QuestionProps) {
   const [timeLeft, setTimeLeft] = useState(question.lifetimeSeconds);
 
-  // useEffect(() => {
-  //   setTimeLeft(question.lifetimeSeconds);
+  useEffect(() => {
+    setTimeLeft(question.lifetimeSeconds);
 
-  //   const timer = setInterval(() => {
-  //     setTimeLeft(prevTime => prevTime - 0.1);
-  //   }, 100);
+    const timer = setInterval(() => {
+      setTimeLeft(prevTime => prevTime - 0.1);
+    }, 100);
 
-  //   return () => clearInterval(timer);
-  // }, [question]);
+    return () => clearInterval(timer);
+  }, [question]);
 
-  // useEffect(() => {
-  //   if (timeLeft <= 0) {
-  //     nextQuestion();
-  //   }
-  // }, [nextQuestion, timeLeft]);
+  useEffect(() => {
+    if (timeLeft <= 0) {
+      nextQuestion();
+    }
+  }, [nextQuestion, timeLeft]);
 
   return (
     <>
