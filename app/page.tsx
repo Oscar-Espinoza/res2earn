@@ -24,7 +24,7 @@ export default function Home() {
         {!isConnected || loading
           ?
           <div className='px-2 xs:px-4 w-full'>
-            <Code color="primary" className='font-semibold w-full text-center text-sm xs:text-base'>Connect and start collecting $QUIZ tokens!</Code>
+            <Code color="primary" className='font-semibold w-full text-center text-sm xs:text-base'>Start collecting $QUIZ tokens!</Code>
           </div>
           :
           <div className='px-2 xs:px-4 flex flex-col gap-3'>
