@@ -9,11 +9,6 @@ export type QuestionType = {
   options: OptionType[];
 };
 
-export type AnswerType = {
-  question: string;
-  answer: string;
-};
-
 export type SurveyType = {
   id: number;
   title: string;

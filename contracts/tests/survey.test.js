@@ -1,81 +1,113 @@
+const { expect } = require('chai')
+const { ethers } = require('hardhat')
 
-const { expect } = require("chai");
-const { ethers } = require("hardhat");
-
-describe("SurveyContract", function () {
-
-  let surveyContract;
+describe('QuizContract', function () {
+  let quizContract
 
   beforeEach(async function () {
-    const Survey = await ethers.getContractFactory("SurveyContract");
-    const [account] = await ethers.getSigners();
-    surveyContract = await Survey.deploy(ethers.utils.parseEther("1"), 3600);
-    await surveyContract.deployed();
-    await surveyContract.connect(account).fundContract({ value: ethers.utils.parseEther("2") });
-    console.log('SurveyContract deployed at:' + surveyContract.address);
-  });
+    const QuizFactory = await ethers.getContractFactory('QuizContract')
+    quizContract = await QuizFactory.deploy(
+      ethers.utils.parseEther('1'),
+      60
+    )
+    await quizContract.deployed()
+    console.log('QuizContract deployed at:' + quizContract.address)
+  })
 
-  it("test initial values", async function () {
-    expect(await surveyContract.owner()).to.equal(await ethers.provider.getSigner(0).getAddress());
-    expect(await surveyContract.prizeAmount()).to.equal(ethers.utils.parseEther("1"));
-    expect((await surveyContract.cooldownTime()).toNumber()).to.equal(3600);
-  });
+  it('test initial values', async function () {
+    expect(await quizContract.owner()).to.equal(
+      await ethers.provider.getSigner(0).getAddress()
+    )
+    expect((await quizContract.cooldownTime()).toNumber()).to.equal(3600)
+  })
 
-  it("test updating prize and cooldown time by owner", async function () {
-    // Change prize amount and cooldown time
-    await surveyContract.setPrizeAmount(ethers.utils.parseEther("2"));
-    await surveyContract.setCooldownTime(7200);
+  it('test submitSurvey function and minting', async function () {
+    const [account] = await ethers.getSigners()
 
-    // Check if the values have been updated
-    expect(await surveyContract.prizeAmount()).to.equal(ethers.utils.parseEther("2"));
-    expect((await surveyContract.cooldownTime()).toNumber()).to.equal(7200);
-  });
+    await quizContract.addValidSurveyId(1)
 
-  it("test unauthorized update attempt", async function () {
-    const [, otherAccount] = await ethers.getSigners();
-    const contractWithOtherAccount = surveyContract.connect(otherAccount);
+    const initialBalance = await quizContract.balanceOf(account.address)
+    expect(initialBalance).to.equal(0)
+    await quizContract.submitSurvey(1, [1, 2, 3])
 
-    // Try to change prize amount and cooldown time with a non-owner account
-    await expect(contractWithOtherAccount.setPrizeAmount(ethers.utils.parseEther("2"))).to.be.revertedWith("Only the owner can call this function");
-    await expect(contractWithOtherAccount.setCooldownTime(7200)).to.be.revertedWith("Only the owner can call this function");
-  });
+    const newBalance = await quizContract.balanceOf(account.address)
+    expect(newBalance).to.equal(ethers.utils.parseEther('1'))
+  })
 
-  it("test survey submission and prize withdrawal", async function () {
-    // Using the first account for the test
-    const [account] = await ethers.getSigners();
-    const initialBalance = await ethers.provider.getBalance(account.address);
+  it('test cooldown period', async function () {
+    await quizContract.addValidSurveyId(1)
+    await quizContract.addValidSurveyId(2)
 
-    // Submit the survey
-    const tx = await surveyContract.submitSurvey();
-    const receipt = await tx.wait();
+    // Submit the first survey
+    await quizContract.submitSurvey(1, [1, 2, 3])
 
-    // Get the final balance after the transaction
-    const finalBalance = await ethers.provider.getBalance(account.address);
+    // Try submitting a different survey before the cooldown period, which should fail due to cooldown
+    await expect(
+      quizContract.submitSurvey(2, [2, 3, 4])
+    ).to.be.revertedWith('You need to wait before submitting again')
+  })
 
-    // Print the gas used and the gas price for debugging
-    console.log('Gas Used:', receipt.gasUsed.toString());
-    console.log('Gas Price:', tx.gasPrice.toString());
+  it('test updating prizeAmount by owner', async function () {
+    await quizContract.setPrizeAmount(ethers.utils.parseEther('2'))
+    expect(await quizContract.prizeAmount()).to.equal(
+      ethers.utils.parseEther('2')
+    )
+  })
 
-    // Calculate the expected net change after considering gas fees
-    const gasCost = receipt.gasUsed.mul(tx.gasPrice);
-    const netChange = finalBalance.sub(initialBalance).add(gasCost);
+  it('test updating cooldownTime by owner', async function () {
+    await quizContract.setCooldownTime(7200)
+    expect((await quizContract.cooldownTime()).toNumber()).to.equal(7200)
+  })
 
-    console.log('Net Change:', netChange.toString());
+  it('test unauthorized update attempt', async function () {
+    const [, otherAccount] = await ethers.getSigners()
+    const quizWithOtherAccount = quizContract.connect(otherAccount)
 
-    // Define a tolerance value for comparison
-    const TOLERANCE = ethers.utils.parseEther("0.002"); // adjust as needed
+    await expect(
+      quizWithOtherAccount.setCooldownTime(7200)
+    ).to.be.revertedWith('Ownable: caller is not the owner')
+  })
 
-    // The account balance should increase by approximately 1 ETH minus the gas fees
-    expect(netChange).to.be.closeTo(ethers.utils.parseEther("1"), TOLERANCE);
-  });
+  it('test submitSurvey with valid survey ID and answers', async function () {
+    const [account] = await ethers.getSigners()
 
-  it("test cooldown period", async function () {
-    const [account] = await ethers.getSigners();
+    await quizContract.addValidSurveyId(1)
 
-    // Submit the survey once
-    await surveyContract.submitSurvey();
+    const initialBalance = await quizContract.balanceOf(account.address)
+    expect(initialBalance).to.equal(0)
 
-    // Try submitting again, which should fail
-    await expect(surveyContract.submitSurvey()).to.be.revertedWith("You need to wait before submitting again");
-  });
-});
+    await quizContract.submitSurvey(1, [2, 3, 1])
+
+    const newBalance = await quizContract.balanceOf(account.address)
+    expect(newBalance).to.equal(ethers.utils.parseEther('1'))
+  })
+
+  it('test submitSurvey with invalid survey ID', async function () {
+    await expect(
+      quizContract.submitSurvey(999, [1, 2, 3])
+    ).to.be.revertedWith('Invalid surveyId')
+  })
+
+  it('test duplicate survey submissions', async function () {
+    await quizContract.addValidSurveyId(1)
+    await quizContract.submitSurvey(1, [1, 2, 3])
+
+    await expect(
+      quizContract.submitSurvey(1, [1, 2, 3])
+    ).to.be.revertedWith('You have already submitted this survey')
+  })
+
+  it('test addValidSurveyId by owner', async function () {
+    await quizContract.addValidSurveyId(1)
+    expect(await quizContract.validSurveyIds(1)).to.equal(true)
+  })
+
+  it('test addValidSurveyId by non-owner', async function () {
+    const [, otherAccount] = await ethers.getSigners()
+    const quizWithOtherAccount = quizContract.connect(otherAccount)
+
+    await expect(
+      quizWithOtherAccount.addValidSurveyId(1)
+    ).to.be.revertedWith('Ownable: caller is not the owner')
+  })
+})

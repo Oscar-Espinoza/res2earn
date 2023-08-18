@@ -1,40 +1,51 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract SurveyContract {
-    address public owner;
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract QuizContract is ERC20, Ownable {
     uint256 public prizeAmount;
     uint256 public cooldownTime;
 
-    mapping(address => bool) public hasSubmitted;
+    mapping(address => mapping(uint256 => bool)) public hasSubmitted;
     mapping(address => uint256) public lastSubmissionTime;
+    mapping(uint256 => bool) public validSurveyIds;
+    mapping(address => mapping(uint256 => uint256[])) public userAnswers;
 
-    event Submitted(address indexed user, uint256 timestamp);
+    event Submitted(address indexed user, uint256 surveyId, uint256[] answers);
 
-    modifier onlyOwner() {
-        require(msg.sender == owner, "Only the owner can call this function");
-        _;
-    }
-
-    constructor(uint256 _prizeAmount, uint256 _cooldownTime) {
-        owner = msg.sender;
+    constructor(
+        uint256 _prizeAmount,
+        uint256 _cooldownTime
+    ) ERC20("Quiz Token", "QUIZ") {
         prizeAmount = _prizeAmount;
         cooldownTime = _cooldownTime;
     }
 
-    function submitSurvey() public {
-        require(block.timestamp - lastSubmissionTime[msg.sender] >= cooldownTime, "You need to wait before submitting again");
-        require(!hasSubmitted[msg.sender], "You have already submitted the survey");
+    function submitSurvey(uint256 surveyId, uint256[] memory answers) public {
+        require(validSurveyIds[surveyId], "Invalid surveyId");
+        require(
+            !hasSubmitted[msg.sender][surveyId],
+            "You have already submitted this survey"
+        );
 
-        hasSubmitted[msg.sender] = true;
+        require(
+            block.timestamp - lastSubmissionTime[msg.sender] >= cooldownTime,
+            "You need to wait before submitting again"
+        );
+
+        hasSubmitted[msg.sender][surveyId] = true;
         lastSubmissionTime[msg.sender] = block.timestamp;
+        userAnswers[msg.sender][surveyId] = answers;
 
-        payable(msg.sender).transfer(prizeAmount);
-
-        emit Submitted(msg.sender, block.timestamp);
+        emit Submitted(msg.sender, surveyId, answers);
+        _mint(msg.sender, prizeAmount);
     }
 
-    function fundContract() public payable {}
+    function addValidSurveyId(uint256 surveyId) public onlyOwner {
+        validSurveyIds[surveyId] = true;
+    }
 
     function setPrizeAmount(uint256 _prizeAmount) public onlyOwner {
         prizeAmount = _prizeAmount;

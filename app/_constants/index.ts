@@ -1,12 +1,14 @@
 import { SurveyType } from "../types/survey";
 import { surveyImg, travelImg, summerImg } from "../assets";
 
+export const contractAddress = "0x9008bE46938a105a922ABDeb49061d5CE71c5629";
+
 export const quizTokenAddress: `0x${string}` =
-  "0x437ef217203452317c3c955cf282b1ee5f6aaf72";
+  "0x9008be46938a105a922abdeb49061d5ce71c5629";
 
 export const surveys: SurveyType[] = [
   {
-    id: 1,
+    id: 6,
     title: "holiday destinations",
     image: travelImg,
     questions: [
@@ -35,7 +37,7 @@ export const surveys: SurveyType[] = [
     ],
   },
   {
-    id: 2,
+    id: 7,
     title: "sports preferences",
     image: surveyImg,
     questions: [

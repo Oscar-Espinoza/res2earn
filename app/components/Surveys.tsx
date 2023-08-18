@@ -13,14 +13,14 @@ function Surveys() {
 
   if (isLoading) {
     return (
-      <div className='grid grid-cols-2 gap-5'>
+      <div className='grid grid-cols-2 gap-5 px-4'>
         {[0, 1, 2, 3, 4].map(i => <SurveyCardSkeleton key={i} position={i} />)}
       </div>
     )
   }
 
   return (
-    <div className='grid grid-cols-2 gap-5'>
+    <div className='grid grid-cols-2 gap-5 px-4'>
       {surveys?.map((survey, i) =>
         <SurveyCard key={i} survey={survey} position={i} />
       )}
