@@ -65,8 +65,6 @@
 
 ### Key Features <a name="key-features"></a>
 
-> Describe between 1-3 key features of the application.
-
 - **[Connect your wallet and see your $QUIZ balance]**
 - **[Time running out live for each survey question]**
 - **[Pre-action fetch of the contract to check any possible error beforehand]**
